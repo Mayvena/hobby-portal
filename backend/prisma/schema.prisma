@@ -1,0 +1,77 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String         @id
+  name         String
+  age          Int
+  email        String         @unique
+  username     String         @unique
+  passwordHash String
+  accessLevel  Int
+  active       Boolean        @default(true)
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  userRoles    UserRole[]
+  refreshTokens RefreshToken[]
+}
+
+model Role {
+  id          String            @id
+  label       String
+  description String
+  userRoles   UserRole[]
+  pageAccess  RolePageAccess[]
+}
+
+model UserRole {
+  userId String
+  roleId String
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role   Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@id([userId, roleId])
+}
+
+model Page {
+  id          String           @id
+  label       String
+  sortOrder   Int
+  roleAccess  RolePageAccess[]
+  rights      UserRight?
+}
+
+model RolePageAccess {
+  roleId String
+  pageId String
+  role   Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  page   Page @relation(fields: [pageId], references: [id], onDelete: Cascade)
+
+  @@id([roleId, pageId])
+}
+
+model UserRight {
+  pageId      String @id
+  readOnly    Int[]
+  readWrite   Int[]
+  deleteLevel Int[]
+  page        Page   @relation(fields: [pageId], references: [id], onDelete: Cascade)
+}
+
+model RefreshToken {
+  id        String   @id @default(cuid())
+  tokenHash String   @unique
+  userId    String
+  expiresAt DateTime
+  revokedAt DateTime?
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}

@@ -1,0 +1,78 @@
+﻿{
+    "users": [
+        {"uid":"USR-1001","name":"John Doe","age":30,"email":"john.doe@example.com","username":"johndoe","password":"123","accessLevel":3},
+        {"uid":"USR-1002","name":"Jane Smith","age":25,"email":"jane.smith@example.com","username":"janesmith","password":"456","accessLevel":2},
+        {"uid":"USR-1003","name":"Michael Carter","age":34,"email":"michael.carter@example.com","username":"mcarter","password":"789","accessLevel":1},
+        {"uid":"USR-1004","name":"Priya Nair","age":29,"email":"priya.nair@example.com","username":"pnair","password":"321","accessLevel":2},
+        {"uid":"USR-1005","name":"Lucas Bennett","age":41,"email":"lucas.bennett@example.com","username":"lbennett","password":"654","accessLevel":3},
+        {"uid":"USR-1006","name":"Sofia Alvarez","age":27,"email":"sofia.alvarez@example.com","username":"salvarez","password":"987","accessLevel":1},
+        {"uid":"USR-1007","name":"Ethan Brooks","age":36,"email":"ethan.brooks@example.com","username":"ebrooks","password":"741","accessLevel":2}
+    ],
+    "roles": [
+        {"id":"admin","label":"Administrator","description":"Full administrative access to protected pages and account management."},
+        {"id":"operations","label":"Operations","description":"Operational role for workflow-oriented pages and daily coordination tools."},
+        {"id":"auditor","label":"Auditor","description":"Read-focused role for audit, review, and reporting scenarios."},
+        {"id":"support","label":"Support","description":"Support role for user-facing assistance and troubleshooting workflows."},
+        {"id":"treasurer","label":"Treasurer","description":"Manages financial records, transactions, and payment channel information."},
+        {"id":"storemanager","label":"Store Manager","description":"Manages organizational assets, categories, and asset sale operations."}
+    ],
+    "userRoles": [
+        {"uid":"USR-1001","roleId":"admin"},{"uid":"USR-1001","roleId":"operations"},{"uid":"USR-1001","roleId":"treasurer"},
+        {"uid":"USR-1002","roleId":"operations"},{"uid":"USR-1002","roleId":"storemanager"},{"uid":"USR-1004","roleId":"support"},
+        {"uid":"USR-1005","roleId":"admin"},{"uid":"USR-1005","roleId":"auditor"},{"uid":"USR-1005","roleId":"treasurer"},
+        {"uid":"USR-1006","roleId":"auditor"},{"uid":"USR-1007","roleId":"support"}
+    ],
+    "pages": [
+        {"id":"profile","label":"Profile","sortOrder":1},
+        {"id":"calendar","label":"Calendar","sortOrder":2},{"id":"reports","label":"Reports","sortOrder":3},{"id":"userlist","label":"User List","sortOrder":4},
+        {"id":"userrights","label":"User Rights","sortOrder":5},{"id":"rolesadmin","label":"Role Admin","sortOrder":6},
+        {"id":"library","label":"Library","sortOrder":7},{"id":"finances","label":"Finances","sortOrder":8},
+        {"id":"assets","label":"Assets","sortOrder":9}
+    ],
+    "rolePageAccess": [
+        {"roleId":"admin","pageId":"userlist"},{"roleId":"admin","pageId":"userrights"},
+        {"roleId":"admin","pageId":"rolesadmin"},{"roleId":"admin","pageId":"finances"},{"roleId":"treasurer","pageId":"finances"}
+    ],
+    "userRights": [
+        {"pageId":"profile","readOnly":[1,2,3],"readWrite":[1,2,3],"delete":[]},
+        {"pageId":"reports","readOnly":[2,3],"readWrite":[3],"delete":[]},
+        {"pageId":"calendar","readOnly":[1,2,3],"readWrite":[2,3],"delete":[]},
+        {"pageId":"userlist","readOnly":[3],"readWrite":[3],"delete":[3]},
+        {"pageId":"userrights","readOnly":[3],"readWrite":[3],"delete":[]},
+        {"pageId":"rolesadmin","readOnly":[3],"readWrite":[3],"delete":[3]},
+        {"pageId":"library","readOnly":[1,2,3],"readWrite":[2,3],"delete":[3]},
+        {"pageId":"finances","readOnly":[1,2,3],"readWrite":[2,3],"delete":[2,3]},
+        {"pageId":"assets","readOnly":[1,2,3],"readWrite":[2,3],"delete":[2,3]}
+    ],
+    "libraryDocuments": [
+        {"id":"doc-1001","name":"Onboarding guide.pdf","mimeType":"application/pdf","size":204800,"uploadedBy":"USR-1001","uploadedAt":"2026-06-01T09:00:00.000Z","description":"Getting started guide for new team members.","category":"HR"},
+        {"id":"doc-1002","name":"Q2 Release notes.docx","mimeType":"application/vnd.openxmlformats-officedocument.wordprocessingml.document","size":98304,"uploadedBy":"USR-1005","uploadedAt":"2026-06-15T14:30:00.000Z","description":"Summary of changes shipped in the Q2 release.","category":"Release"},
+        {"id":"doc-1003","name":"Access policy.pdf","mimeType":"application/pdf","size":51200,"uploadedBy":"USR-1001","uploadedAt":"2026-07-01T11:00:00.000Z","description":"Defines role and access-level policies for the platform.","category":"Admin"}
+    ],
+    "financesConfig": {"iban":"DE89 3704 0044 0532 0130 00","paypal":"treasurer@example.com","revolut":"@example-org","currency":"EUR"},
+    "transactions": [
+        {"id":"txn-1001","date":"2026-07-05","type":"income","amount":2500.00,"description":"Membership fees July","category":"Membership","createdBy":"USR-1001"},
+        {"id":"txn-1002","date":"2026-07-03","type":"expense","amount":320.00,"description":"Office supplies","category":"Operations","createdBy":"USR-1001"},
+        {"id":"txn-1003","date":"2026-06-28","type":"income","amount":1200.00,"description":"Annual sponsor donation","category":"Donations","createdBy":"USR-1005"},
+        {"id":"txn-1004","date":"2026-06-20","type":"expense","amount":85.00,"description":"Subscription renewal","category":"Software","createdBy":"USR-1001"},
+        {"id":"txn-1005","date":"2026-06-15","type":"expense","amount":1100.00,"description":"Team event catering","category":"Events","createdBy":"USR-1005"},
+        {"id":"txn-1006","date":"2026-06-01","type":"income","amount":2500.00,"description":"Membership fees June","category":"Membership","createdBy":"USR-1001"},
+        {"id":"txn-1007","date":"2026-05-20","type":"expense","amount":450.00,"description":"External training course","category":"Training","createdBy":"USR-1005"},
+        {"id":"txn-1008","date":"2026-05-01","type":"income","amount":2500.00,"description":"Membership fees May","category":"Membership","createdBy":"USR-1001"}
+    ],
+    "assetCategories": [
+        {"id":"cat-it","name":"IT Equipment","description":"Computers, screens, and technical devices."},
+        {"id":"cat-furniture","name":"Furniture","description":"Office desks, chairs, and storage."},
+        {"id":"cat-events","name":"Event Assets","description":"Assets used for events and public activities."}
+    ],
+    "assets": [
+        {"id":"asset-1001","name":"MacBook Pro 14","categoryId":"cat-it","description":"Laptop assigned to communications team.","price":2100},
+        {"id":"asset-1002","name":"Standing Desk","categoryId":"cat-furniture","description":"Adjustable desk in meeting room B.","price":640},
+        {"id":"asset-1003","name":"Portable Speaker Set","categoryId":"cat-events","description":"Audio kit for community events.","price":380}
+    ],
+    "calendarEvents": [
+        {"id":"evt-1001","title":"Sprint planning","date":"2026-07-10","category":"Team","description":"Plan backlog priorities for the next sprint."},
+        {"id":"evt-1002","title":"Rights review","date":"2026-07-14","category":"Admin","description":"Review updated user-rights definitions."},
+        {"id":"evt-1003","title":"Release checkpoint","date":"2026-07-18","category":"Release","description":"Validate feature readiness before release."}
+    ]
+}

@@ -1,0 +1,1 @@
+// generic welcome page for the app, shonw for non-logged in users. Displays a welcome message and a login button.

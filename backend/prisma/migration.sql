@@ -1,0 +1,1 @@
+-- Use Prisma migrations via `npm run prisma:migrate`.
